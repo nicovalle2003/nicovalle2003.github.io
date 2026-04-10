@@ -41,7 +41,7 @@
     <script>
         async function obtenerDato() {
             try {
-                const response = await fetch("http://localhost:1880/data");
+                const response = await fetch("http://192.168.0.234:1880/data");
                 const data = await response.json();
 
                 document.getElementById("dato").innerText =
