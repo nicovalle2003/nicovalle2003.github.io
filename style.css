@@ -1,7 +1,33 @@
-<style>
+/* Fondo general */
 body {
-    background-color: black;
+    background-color: #0f172a;
     color: white;
     text-align: center;
+    font-family: Arial, sans-serif;
 }
-</style>
+
+/* Título */
+h1 {
+    color: #38bdf8;
+    font-size: 3em;
+}
+
+/* Texto */
+p {
+    font-size: 1.2em;
+}
+
+/* Botón */
+button {
+    background-color: #38bdf8;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1em;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #0ea5e9;
+}
