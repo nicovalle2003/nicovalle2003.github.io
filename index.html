@@ -1,30 +1,64 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <title>Dashboard Node-RED</title>
+
+    <style>
+        body {
+            background-color: #0f172a;
+            color: white;
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+
+        h1 {
+            color: #38bdf8;
+            font-size: 3em;
+        }
+
+        #dato {
+            font-size: 4em;
+            margin-top: 20px;
+        }
+
+        .status {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #94a3b8;
+        }
+    </style>
 </head>
 
 <body>
 
     <h1>Sensor en tiempo real 🌡️</h1>
-    <p id="dato">Cargando...</p>
+
+    <div id="dato">--</div>
+    <div class="status" id="estado">Conectando...</div>
 
     <script>
         async function obtenerDato() {
             try {
-                const response = await fetch("http://187.191.36.167:1880/data");
+                const response = await fetch("http://TU_IP:1880/data");
                 const data = await response.json();
 
                 document.getElementById("dato").innerText =
                     data.valor + " " + data.unidad;
 
+                document.getElementById("estado").innerText = "Conectado ✅";
+
             } catch (error) {
                 console.error("Error:", error);
+                document.getElementById("estado").innerText = "Sin conexión ❌";
             }
         }
 
-        // Actualiza cada 2 segundos
+        // Ejecutar inmediatamente
+        obtenerDato();
+
+        // Actualizar cada 2 segundos
         setInterval(obtenerDato, 2000);
     </script>
 
