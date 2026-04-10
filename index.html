@@ -1,19 +1,32 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Mi primera web</title>
-
-    <!-- Conexión con CSS -->
+    <title>Dashboard</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <h1>Hola mundo 🚀</h1>
-    <p>Esta es mi página web con estilo</p>
+    <h1>Sensor en tiempo real 🌡️</h1>
+    <p id="dato">Cargando...</p>
 
-    <button>Click aquí</button>
+    <script>
+        async function obtenerDato() {
+            try {
+                const response = await fetch("http://TU_IP:1880/data");
+                const data = await response.json();
+
+                document.getElementById("dato").innerText =
+                    data.valor + " " + data.unidad;
+
+            } catch (error) {
+                console.error("Error:", error);
+            }
+        }
+
+        // Actualiza cada 2 segundos
+        setInterval(obtenerDato, 2000);
+    </script>
 
 </body>
 </html>
